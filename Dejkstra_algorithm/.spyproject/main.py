@@ -31,7 +31,7 @@ for line in graph_file:
   else:
     line_str_arr = file_str.split(' ');
     line_int_arr = [int(num) for num in line_str_arr]
-  i++
+  i += 1
 
 
 # номер стартовой вершины
