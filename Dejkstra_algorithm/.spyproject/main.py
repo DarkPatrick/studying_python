@@ -11,7 +11,7 @@ import numpy as np
 
 # костанта под бесконечность
 # тут вроде есть бесконечность, но хз
-infinity = -1
+infinity = 0
 
 
 # ввод имени файла в котором хранится граф
@@ -31,17 +31,23 @@ for line in graph_file:
     else:
         line_str_arr = file_str.split(' ');
         line_int_arr = [int(num) for num in line_str_arr]
-        for j in line_int_arr:
-            #if ()
-    i += 1
+        for j in range(len(line_int_arr)):
+# yep. that is a strange condition. but only beacause i assign infinity to zero
+            if (line_int_arr[j]>infinity):
+                graph[i - 1].append(j)
+                graph[i - 1].append(line_int_arr[j])
+    if (len(line_int_arr) > 1):
+        i += 1
 
 
 # номер стартовой вершины
-start_vertex = input("введите номер вершины: ")
+start_vertex = input("введите номер вершины из которой надо искать пути: ")
 
 # будем хранить пары {номер вершины: расстояние_до_неё_от_стартовой} в виде словаря
 distances = {i: infinity for i in range(graph_size)}
 
-# расстояние от начальной вершины до неё самой равно 0
-distances[start_vertex] = 0
+
+# начало самого алгоритма
+min_dist_val = graph[start_vertex].pop()
+min_dist_vert = graph[start_vertex].pop()
 
