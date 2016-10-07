@@ -33,7 +33,7 @@ for line in graph_file:
         line_int_arr = [int(num) for num in line_str_arr]
         for j in range(len(line_int_arr)):
 # yep. that is a strange condition. but only beacause i assign infinity to zero
-            if (line_int_arr[j]>infinity):
+            if (line_int_arr[j] > infinity):
                 graph[i - 1].append(j)
                 graph[i - 1].append(line_int_arr[j])
     if (len(line_int_arr) > 1):
@@ -48,6 +48,17 @@ distances = {i: infinity for i in range(graph_size)}
 
 
 # начало самого алгоритма
-min_dist_val = graph[start_vertex].pop()
-min_dist_vert = graph[start_vertex].pop()
-
+cur_vertex = start_vertex
+it = iter(graph[cur_vertex])
+min_dist_vert = it.next()
+min_dist_val = it.next()
+while (graph[cur_vertex]):
+    dist_vert = it.next()
+    dist_val = it.next()
+    if (dist_val < min_dist_val):
+        min_dist_vert = dist_vert
+        min_dist_val = dist_val
+    if ((infinity == distances[dist_vert]) || (distances[cur_vertex] 
++ distances[dist_vert] < distances[dist_vert])):
+        distances[dist_vert] = distances[cur_vertex]  + distances[dist_vert]
+    
