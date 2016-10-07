@@ -5,6 +5,7 @@ Created on Thu Oct  6 22:32:31 2016
 @author: Egor
 """
 
+
 import numpy as np
 
 
@@ -12,13 +13,29 @@ import numpy as np
 # тут вроде есть бесконечность, но хз
 infinity = -1
 
+
+# ввод имени файла в котором хранится граф
+graph_file_name = input("введите имя файла с графом: ")
+
+
+# открытие файла для чтения
+graph_file = open(graph_file_name, 'r')
+i = 0
+for line in graph_file:
+  file_str = line
+  if (0 == i):
 # количество веhiby в графе
-graph_size = 3
+    graph_size = int(file_str)
+# массив вешин из списков расстояний до тех вершин, с которыми имеется связь
+    graph = np.array({} for i in range(graph_size))
+  else:
+    line_str_arr = file_str.split(' ');
+    line_int_arr = [int(num) for num in line_str_arr]
+  i++
+
 
 # номер стартовой вершины
-start_vertex = 0
-
-graph = np.array({} for i in range(graph_size))
+start_vertex = input("введите номер вершины: ")
 
 # будем хранить пары {номер вершины: расстояние_до_неё_от_стартовой} в виде словаря
 distances = {i: infinity for i in range(graph_size)}
