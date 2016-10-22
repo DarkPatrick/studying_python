@@ -5,15 +5,11 @@ It is meant for finding formal concepts.
 File "main.py" contains input of number of objects, attributes and matrix, where rows are objects and columns - attributes.
 example of input:
 
-3
-
-3
-
-1 0 1
-
-1 1 0
-
-1 0 1
+3  
+3  
+1 0 1  
+1 1 0  
+1 0 1  
 
 Output: lines of sets of formal concepts
 
