@@ -60,7 +60,6 @@ class ConceptLattice:
 
         def dashAttributes(self, attributes_nums):
             objects = set({i for i in range(self.num_of_objs)})
-            # print(attributes_nums)
             for i in attributes_nums:
                 objects &= self.attributes[i]
             return objects
@@ -91,7 +90,7 @@ class ConceptLattice:
             else:
                 self.__add__(concept)
                 for i in range(cur_obj + 1, self.concept_matrix.num_of_objs):
-                    if (i not in set_of_objs):
+                    if (i not in set(concept.objects)):
                         set_of_objs = set(concept.objects) | set({i})
                         cur_obj_atts = set(
                             concept.attributes
@@ -99,8 +98,16 @@ class ConceptLattice:
                         cur_obj_dbl_dash = self.concept_matrix.dashAttributes(
                             list(cur_obj_atts)
                             )
-                        concept = Concept(cur_obj_dbl_dash, cur_obj_atts)
-                        process(set_of_objs, i, concept)
+                        new_concept = Concept(cur_obj_dbl_dash, cur_obj_atts)
+                        process(set_of_objs, i, new_concept)
+
+        cur_obj_set = set({})
+        cur_obj = -1
+        cur_obj_atts = self.concept_matrix.dashObjects([])
+        cur_obj_dbl_dash = self.concept_matrix.dashAttributes(
+                                list(cur_obj_atts))
+        concept = Concept(cur_obj_dbl_dash, cur_obj_atts)
+        process(cur_obj_set, cur_obj, concept)
 
         for i in range(self.concept_matrix.num_of_objs):
             cur_obj_set = set({i})
