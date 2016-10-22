@@ -16,12 +16,6 @@ context = list([])
 
 for i in range(num_of_objs):
     context.append(list([]))
-    """
-    for j in range(num_of_atts):
-        context[i].append(
-            eval(input("(" + str(i) + ", " + str(j) + "): "))
-        )
-    """
     rd_str = input("enter attributes for " + str(i) + " object: ")
     temp_list = rd_str.split()
     for j in temp_list:
