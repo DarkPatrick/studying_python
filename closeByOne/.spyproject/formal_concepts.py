@@ -3,6 +3,8 @@
 Created on Sat Oct 22 17:06:40 2016
 
 @author: Egor
+
+module with classes of concept and concept lattice
 """
 
 import copy as cp
