@@ -15,7 +15,7 @@ sys.path.insert(0, "../..")
 
 tokens = ('NAME', 'NUMBER',)
 
-literals = ['+', '&', '-', '|', '>', '(', ')']
+literals = ['+', '&', '-', '|', '>', '<', '(', ')']
 
 
 def t_NUMBER(t):
@@ -49,11 +49,14 @@ def p_statement_expr(p):
 
 
 def p_expression_binop(p):
-    '''expression : expression '>' expression
+    '''expression : expression '<' expression
+                  | expression '>' expression
                   | expression '|' expression
                   | expression '+' expression
                   | expression '&' expression'''
-    if (p[2] == '>'):
+    if (p[2] == '<'):
+        p[0] = int(p[1] == p[3])
+    elif (p[2] == '>'):
         p[0] = (1 - p[1]) | p[3]
     elif (p[2] == '|'):
         p[0] = p[1] | p[3]
@@ -83,6 +86,7 @@ def p_error(p):
 
 
 precedence = (
+    ('left', '<'),
     ('left', '>'),
     ('left', '+', '|'),
     ('left', '&'),
@@ -101,9 +105,10 @@ eq_str = re.sub(r'/\\', '&', eq_str)
 eq_str = re.sub(r'\\/', '|', eq_str)
 eq_str = re.sub(r'\+', '+', eq_str)
 eq_str = re.sub(r'\~', '-', eq_str)
+eq_str = re.sub(r'<->', '<', eq_str)
 eq_str = re.sub(r'->', '>', eq_str)
 
-eval_str = re.split(r'\-|\||\&|\+|\(|\)|\>', eq_str)
+eval_str = re.split(r'\-|\||\&|\+|\(|\)|\>|\<', eq_str)
 num_of_vars = 0
 variables = list()
 for i in range(len(eval_str)):

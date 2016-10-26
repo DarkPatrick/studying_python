@@ -5,9 +5,9 @@ _tabversion = '3.8'
 
 _lr_method = 'LALR'
 
-_lr_signature = '3E697E64DFF1C81E84A812647012DD2B'
+_lr_signature = 'AB53DEEF92510B131311E0FD12692F26'
     
-_lr_action_items = {'(':([0,1,5,9,10,11,12,14,],[1,1,1,1,1,1,1,1,]),'=':([6,],[14,]),'NUMBER':([0,1,5,9,10,11,12,14,],[3,3,3,3,3,3,3,3,]),'&':([3,4,6,7,8,13,15,16,17,18,19,20,],[-9,10,-10,10,-10,-7,-8,10,-6,10,10,10,]),'$end':([2,3,4,6,8,13,15,16,17,18,19,20,],[0,-9,-1,-10,-10,-7,-8,-5,-6,-4,-3,-2,]),'-':([0,1,5,9,10,11,12,14,],[5,5,5,5,5,5,5,5,]),'NAME':([0,1,5,9,10,11,12,14,],[6,8,8,8,8,8,8,8,]),')':([3,7,8,13,15,16,17,18,19,],[-9,15,-10,-7,-8,-5,-6,-4,-3,]),'>':([3,4,6,7,8,13,15,16,17,18,19,20,],[-9,12,-10,12,-10,-7,-8,-5,-6,-4,-3,12,]),'|':([3,4,6,7,8,13,15,16,17,18,19,20,],[-9,11,-10,11,-10,-7,-8,-5,-6,-4,11,11,]),'+':([3,4,6,7,8,13,15,16,17,18,19,20,],[-9,9,-10,9,-10,-7,-8,-5,-6,-4,9,9,]),}
+_lr_action_items = {'(':([0,1,4,7,8,9,10,11,],[1,1,1,1,1,1,1,1,]),'<':([2,5,6,12,13,14,15,16,17,18,],[7,-9,7,-7,-8,-2,-5,-3,-6,-4,]),'+':([2,5,6,12,13,14,15,16,17,18,],[8,-9,8,-7,-8,8,-5,8,-6,-4,]),'-':([0,1,4,7,8,9,10,11,],[4,4,4,4,4,4,4,4,]),'>':([2,5,6,12,13,14,15,16,17,18,],[9,-9,9,-7,-8,9,-5,-3,-6,-4,]),'|':([2,5,6,12,13,14,15,16,17,18,],[11,-9,11,-7,-8,11,-5,11,-6,-4,]),'&':([2,5,6,12,13,14,15,16,17,18,],[10,-9,10,-7,-8,10,10,10,-6,10,]),'$end':([2,3,5,12,13,14,15,16,17,18,],[-1,0,-9,-7,-8,-2,-5,-3,-6,-4,]),'NUMBER':([0,1,4,7,8,9,10,11,],[5,5,5,5,5,5,5,5,]),')':([5,6,12,13,14,15,16,17,18,],[-9,13,-7,-8,-2,-5,-3,-6,-4,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'statement':([0,],[2,]),'expression':([0,1,5,9,10,11,12,14,],[4,7,13,16,17,18,19,20,]),}
+_lr_goto_items = {'expression':([0,1,4,7,8,9,10,11,],[2,6,12,14,15,16,17,18,]),'statement':([0,],[3,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,13 +27,12 @@ del _lr_goto_items
 _lr_productions = [
   ("S' -> statement","S'",1,None,None,None),
   ('statement -> expression','statement',1,'p_statement_expr','main.py',47),
-  ('statement -> NAME = expression','statement',3,'p_statement_assign','main.py',49),
-  ('expression -> expression > expression','expression',3,'p_expression_binop','main.py',52),
-  ('expression -> expression | expression','expression',3,'p_expression_binop','main.py',53),
-  ('expression -> expression + expression','expression',3,'p_expression_binop','main.py',54),
-  ('expression -> expression & expression','expression',3,'p_expression_binop','main.py',55),
-  ('expression -> - expression','expression',2,'p_expression_uminus','main.py',67),
-  ('expression -> ( expression )','expression',3,'p_expression_group','main.py',72),
-  ('expression -> NUMBER','expression',1,'p_expression_number','main.py',77),
-  ('expression -> NAME','expression',1,'p_expression_name','main.py',89),
+  ('expression -> expression < expression','expression',3,'p_expression_binop','main.py',52),
+  ('expression -> expression > expression','expression',3,'p_expression_binop','main.py',53),
+  ('expression -> expression | expression','expression',3,'p_expression_binop','main.py',54),
+  ('expression -> expression + expression','expression',3,'p_expression_binop','main.py',55),
+  ('expression -> expression & expression','expression',3,'p_expression_binop','main.py',56),
+  ('expression -> - expression','expression',2,'p_expression_uminus','main.py',70),
+  ('expression -> ( expression )','expression',3,'p_expression_group','main.py',75),
+  ('expression -> NUMBER','expression',1,'p_expression_number','main.py',80),
 ]
