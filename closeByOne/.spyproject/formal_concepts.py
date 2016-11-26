@@ -8,6 +8,7 @@ module with classes of concept and concept lattice
 """
 
 import copy as cp
+from itertools import combinations
 
 
 class Concept:
@@ -84,7 +85,7 @@ class ConceptLattice:
         else:
             self.concepts.append(concept)
 
-    def calculate_formal_concepts(self):
+    def calculateFormalConcepts(self):
         def process(set_of_objs, cur_obj, concept):
             for i in range(cur_obj):
                 if (i in (set_of_objs - set(concept.objects))):
@@ -119,3 +120,20 @@ class ConceptLattice:
                                     list(cur_obj_atts))
             concept = Concept(cur_obj_dbl_dash, cur_obj_atts)
             process(cur_obj_set, cur_obj, concept)
+
+    def findContentRules(self, support=0.1, confidence=1.0):
+        self.content_rules = list([])
+        it_obj1 = tuple(i for i in range(self.concept_matrix.num_of_atts))
+        it_obj2 = tuple(i for i in range(self.concept_matrix.num_of_atts))
+        for c1 in range(self.concept_matrix.num_of_atts + 1):
+            for c2 in combinations(it_obj1, c1):
+                for c3 in range(self.concept_matrix.num_of_atts + 1):
+                    for c4 in combinations(it_obj2, c3):
+                        if (c2 == c4):
+                            continue
+                        objs1 = self.concept_matrix.dashAttributes(c2)
+                        objs2 = self.concept_matrix.dashAttributes(c4)
+                        if (((len(objs1) == 0) or
+(len(objs1 & objs2) / len(objs1) >= confidence)) and
+(len(objs1 & objs2) / self.concept_matrix.num_of_objs >= support)):
+                            self.content_rules.append(list([list(c2), list(c4)]))
