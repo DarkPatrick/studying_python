@@ -44,7 +44,7 @@ def findConceptRules(concept_lattice):
 
 
 concept_lattice = findFormalConcepts()
-concept_lattice.findContentRules(support=0.5)
-print(concept_lattice.content_rules)
-# print(concept_lattice)
-# findConceptRules(concept_lattice)
+# print(concept_lattice.content_rules)
+rules = concept_lattice.findContentRules(min_supp=0.1, min_conf=0.1)
+for i in rules:
+    print(i)
