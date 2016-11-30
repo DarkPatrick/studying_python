@@ -19,8 +19,10 @@ class Graph:
     def getEdge(self, v1, v2):
         try:
             if (v1 < v2):
-                return self.edges[(v1, v2)]
+                res = self.edges[(v1, v2)]
             else:
-                return self.edges[(v2, v1)]
+                res = self.edges[(v2, v1)]
         except:
-            return {}
+            res = {}
+        finally:
+            return res
